@@ -8,7 +8,7 @@ const http = require('http');
 const app = require('./src/app');
 
 // Config .env
-require('dotenv').config();
+require('dotenv').config({ path: '.env' });
 
 //Creación servidor
 const server = http.createServer(app);

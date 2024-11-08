@@ -9,4 +9,13 @@ const pool = mysql.createPool({
     // multipleStatements: true
 });
 
+// Conexión a la base de datos
+connection.connect((err) => {
+    if (err) {
+      console.error('Error al conectar con la base de datos! Reinténtalo ', err);
+    } else {
+      console.log('¡Felicidades! La conexión ha funcionado');
+    }
+  });
+  
 module.exports = pool.promise();
