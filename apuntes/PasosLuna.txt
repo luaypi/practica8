@@ -1,0 +1,40 @@
+Vale, comenzamos:
+
+1. Creación de carpetas y archivos - listo
+
+2. index.js: 
+        - Importamos módulos: 
+            const http = require('http'); // para crear y gestionar servidores HTTP
+            const app = require('./src/app'); // importamos la aplicación de express, que contendrá la config de la aplicación, con sus rutas y middleware
+
+        - Configuración de las variables de entorno: 
+         require('dotenv').config(); Este código carga las variables de entorno definidas en un archivo .env que tienes en tu proyecto. Esto te permite acceder a configuraciones como el puerto y otras credenciales sensibles sin incluirlas directamente en tu código.
+
+        - Creación del servidor: 
+            const server = http.createServer(app);  Esto significa que todas las solicitudes que lleguen al servidor serán manejadas por la aplicación Express.
+       
+        - Definición del puerto: 
+            const PORT = process.env.PORT || 3000;
+            definimos el puerto en el que el servidor escuchará las solicitudes. Si process.env.PORT está definido (por ejemplo, en el archivo .env), se usará ese valor. De lo contrario, se utilizará el puerto 3000 como valor predeterminado.
+        
+        - Iniciar el servidor: 
+            server.listen(PORT);
+            Con esta línea, inicias el servidor y le dices que empiece a escuchar en el puerto que has definido.
+
+        - Listeners para listening: 
+            server.on('listening', () => {
+                console.log(`Server listening on port ${PORT}`);
+            });
+            Aqui configuramos un listener para el evento listening. Esto significa que, cuando el servidor comience a escuchar en el puerto especificado, se ejecutará la función que muestra un mensaje en la consola indicando que el servidor está activo y en funcionamiento.
+
+        - Listener para error: 
+            server.on('error', (error) => {
+                console.log(error);
+            });
+
+            En este caso, estoy configurando un listener para el evento error. Si ocurre algún error en el servidor (por ejemplo, si el puerto está en uso), se ejecutará la función y se mostrará el error en la consola.
+
+    3. db.js
+    4. app.js
+    5. apiRoutes
+    6. 
