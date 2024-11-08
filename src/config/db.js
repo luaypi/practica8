@@ -10,12 +10,16 @@ const pool = mysql.createPool({
 });
 
 // Conexión a la base de datos
-connection.connect((err) => {
-    if (err) {
-      console.error('Error al conectar con la base de datos! Reinténtalo ', err);
-    } else {
-      console.log('¡Felicidades! La conexión ha funcionado');
-    }
-  });
-  
+const promisePool = pool.promise();
+
+promisePool.getConnection()
+    .then(connection => {
+        console.log('¡Conexión exitosa a la base de datos! Vaya crack Luna 🤩');
+        connection.release();  // Aquí liberamos la conexión después de usarla
+    })
+    .catch(err => {
+        console.error('Error de conexión, pero que no cunda el pánico 😉', err);
+    });
+
+
 module.exports = pool.promise();
