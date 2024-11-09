@@ -1,17 +1,17 @@
 const router = require('express').Router();
 
-const { getAllPosts, createPost } = require('../../controllers/postsController');
+const { getAllPosts, getById, createPost, updatePost, deletePost  } = require('../../controllers/postsController');
 const { checkPostId } = require('../../utils/middlewares');
 
 router.get('/', getAllPosts);
-router.get('/:autorId', checkPostId, getById);
+router.get('/:postId', checkPostId, getById);
 //by lunix
-router. get('/buscar', lookPostsByName);
-router.get('/buscar', lookPostsByCategoria);
-router.get('/buscar', lookPostsByDateofCreation);
+// router. get('/buscar', lookPostsByName);
+// router.get('/buscar', lookPostsByCategoria);
+// router.get('/buscar', lookPostsByDateofCreation);
 
 router.post('/', createPost);
-router.put('/:autorId', checkAutorId, updatePost);
-router.delete('/:autorId', checkAutorId, deletePost);
+router.put('/:postId', checkPostId, updatePost);
+router.delete('/:postId', checkPostId, deletePost);
 
 module.exports = router;
