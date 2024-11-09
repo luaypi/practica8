@@ -1,4 +1,4 @@
-const { selectAll, selectById, insertPost, updatePost, deletePost} = require("../models/postsModel");
+const { selectAll, selectById, insertPost, updatePostById, deleteById } = require("../models/postsModel");
 
 const getAllPosts = async (req, res, next) => {
     try {
@@ -24,6 +24,7 @@ const getById = async (req, res, next) => {
 const createPost = async (req, res, next) => {
 
     try {
+        // req.body.staff_id = req.user.id; 
         // Insertar el nuevo post
         const [result] = await insertPost(req.body);
         // Recuperar los datos del nuevo post
@@ -39,7 +40,7 @@ const updatePost = async (req, res, next) => {
     const { postId } = req.params;
 
     try {
-        const [result] = await updatePost(postId, req.body);
+        const [result] = await updatePostById(postId, req.body);
         const post = await selectById(postId);
         res.json(post);
     } catch (error) {
