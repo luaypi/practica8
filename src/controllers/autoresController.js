@@ -1,4 +1,4 @@
-const { selectAll, selectById, insertAutor, updateAutor, deleteAutor} = require("../models/autoresModel");
+const { selectAll, selectById, insertAutor, updateAutorById, deleteAutorById} = require("../models/autoresModel");
 
 const getAllAutores = async (req, res, next) => {
     try {
@@ -28,7 +28,6 @@ const createAutor = async (req, res, next) => {
         const [result] = await insertAutor(req.body);
         // Recuperar los datos del nuevo autor
         const autor = await selectById(result.insertId);
-
         res.json(autor);
     } catch (error) {
         next(error);
@@ -39,7 +38,7 @@ const updateAutor = async (req, res, next) => {
     const { autorId } = req.params;
 
     try {
-        const [result] = await updateAutor(autorId, req.body);
+        const [result] = await updateAutorById(autorId, req.body);
         const autor = await selectById(autorId);
         res.json(autor);
     } catch (error) {
@@ -52,7 +51,7 @@ const deleteAutor = async (req, res, next) => {
 
     try {
         const autor = await selectById(autorId);
-        await deleteById(autorId);
+        await deleteAutorById(autorId);
         res.json(autor);
     } catch (error) {
         next(error);
