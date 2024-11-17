@@ -1,5 +1,6 @@
 const pool = require("../config/db");
 
+
 function selectAll() {
     return pool.query('select * from autores;')
 }
@@ -14,6 +15,7 @@ async function selectById(autorId) {
     return autores[0];
 }
 
+
 function insertAutor ({ nombre, email, imagen }) {
     return pool.query('insert into autores (nombre, email, imagen) values (? , ? , ?)',
         [nombre, email, imagen]
@@ -22,8 +24,8 @@ function insertAutor ({ nombre, email, imagen }) {
 
 function updateAutorById (autorId, { nombre, email, imagen }) {
     return pool.query(
-        'update autores set nombre = ?, email = ?, imagen = ?)',
-        [nombre, email, imagen]
+        'UPDATE autores SET nombre = ?, email = ?, imagen = ? WHERE id = ?',
+        [nombre, email, imagen, autorId]
     );
 }
 

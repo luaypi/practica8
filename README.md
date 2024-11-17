@@ -39,7 +39,7 @@ npm install
 Create a `.env` file in the root of the project and configure your environment variables. An example `.env` file might look like this:
 
 ```
-PORT=3000
+PORT=4000
 ```
 
 ### Running the Application

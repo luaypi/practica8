@@ -1,14 +1,15 @@
-const router = require('express').Router();
+const express = require("express");
+const router = express.Router();
 
-const { getAllAutores, getById, createAutor, updateAutor, deleteAutor } = require('../../controllers/autoresController');
+const { getAllAutores, getById, createAutor, updateAutor, deleteAutor, getByEmail } = require('../../controllers/autoresController');
 const { checkAutorId } = require('../../utils/middlewares');
 
 router.get('/', getAllAutores);
-router.get('/:autorId', checkAutorId, getById);
-
+router.get('/:autorId', getById);
 
 router.post('/', createAutor);
-router.put('/:autorId', checkAutorId, updateAutor);
-router.delete('/:autorId', checkAutorId, deleteAutor);
+router.put('/:autorId', updateAutor);
+router.delete('/:autorId', deleteAutor);
 
 module.exports = router;
+
